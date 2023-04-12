@@ -12,7 +12,8 @@ export class CarsController {
   }
 
   static async listAll(req: Request, res: Response) {
-    const response = await CarsServices.listAll();
+    const query = req.query;
+    const response = await CarsServices.listAll(query);
 
     return res.status(200).json(response);
   }

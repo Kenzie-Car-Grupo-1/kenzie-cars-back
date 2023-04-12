@@ -7,6 +7,7 @@ import {
   CarAdRequestParams,
 } from "../interface/carsAd.interface";
 import { CreateCarsAdSerializer } from "../serializers/carsAd.serializers";
+import { paginate } from "../utils/pagination.util";
 
 export class CarsServices {
   static async create(data: ICarsAdCreate) {
@@ -20,12 +21,18 @@ export class CarsServices {
     return carsAd;
   }
 
-  static async listAll() {
+  static async listAll(query: object) {
     const carsRepository = AppDataSource.getRepository(CarAd);
 
     const cars = await carsRepository.find();
 
-    return cars;
+    return {
+      message: "Produtos listados com sucesso",
+      ...paginate({
+        list: cars.reverse(),
+        query,
+      }),
+    };
   }
 
   static async listOne(carId: any) {
