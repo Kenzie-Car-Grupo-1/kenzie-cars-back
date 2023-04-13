@@ -1,14 +1,14 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { CarAd } from "./cars.entity";
 
-@Entity()
+@Entity("carImage")
 export class CarImage {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column({ type: "varchar", length: 255, nullable: false })
   url: string;
 
-  @ManyToOne(() => CarAd, (car) => car.images)
+  @ManyToOne(() => CarAd, (cars) => cars.images, { onDelete: "CASCADE" })
   car: CarAd;
 }
