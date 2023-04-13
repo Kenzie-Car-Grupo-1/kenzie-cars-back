@@ -1,10 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { CarImage } from "./carImages.entity";
 
-@Entity()
+@Entity("cars")
 export class CarAd {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
   @Column({ type: "varchar", length: 50, nullable: false })
   brand: string;
@@ -30,6 +30,8 @@ export class CarAd {
   @Column({ type: "varchar", length: 255, nullable: false })
   description: string;
 
-  @OneToMany(() => CarImage, (carImage) => carImage.car, { cascade: true })
+  @OneToMany(() => CarImage, (carImage) => carImage.car, {
+    nullable: true,
+  })
   images: CarImage[];
 }
