@@ -1,5 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+} from "typeorm";
 import { CarImage } from "./carImages.entity";
+import { Users } from "./user.entity";
+import Comment from "./comment.entity";
 
 @Entity("cars")
 export class CarAd {
@@ -34,4 +42,10 @@ export class CarAd {
     nullable: true,
   })
   images: CarImage[];
+
+  @ManyToOne(() => Users, { onDelete: "CASCADE" })
+  user: Users;
+
+  @OneToMany(() => Comment, (comment) => comment.car)
+  comment: Comment[];
 }
