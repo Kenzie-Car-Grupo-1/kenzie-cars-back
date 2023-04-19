@@ -3,13 +3,20 @@ import { CarAd } from "../entities/cars.entity";
 import { ICarsAdCreate, ICarsAdUpdate } from "../interface/carsAd.interface";
 import { paginate } from "../utils/pagination.util";
 import { CarImage } from "../entities/carImages.entity";
+import { Users } from "../entities/user.entity";
+import { CreateCarsAdResponseSerializer } from "../serializers/carsAd.serializers";
 
 export class CarsServices {
-  static async create(data: ICarsAdCreate) {
+  static async create(data: ICarsAdCreate, userId: string) {
     const carsRepository = AppDataSource.getRepository(CarAd);
     const carImagesRepository = AppDataSource.getRepository(CarImage);
+    const userRepository = AppDataSource.getRepository(Users);
 
-    let { images, ...dataCar } = data;
+    const userSaleman = await userRepository.findOne({ where: { id: userId } });
+
+    let { images, ...dataCar }: any = data;
+
+    dataCar.user = userSaleman;
 
     const cars: any = carsRepository.create(dataCar);
     await carsRepository.save(cars);
@@ -27,10 +34,12 @@ export class CarsServices {
       }
     }
 
-    const carsAd = await carsRepository.findOne({
+    const carsAd: any = await carsRepository.findOne({
       where: { id: cars.id },
-      relations: { images: true },
+      relations: { images: true, user: true },
     });
+
+    delete carsAd.user.password;
 
     return carsAd;
   }

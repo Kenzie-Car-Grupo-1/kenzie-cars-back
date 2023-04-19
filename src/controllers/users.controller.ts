@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import UsersService from "../services/users.service";
+import { ICreateUser } from "../interface/users.interface";
 
 class UsersController {
   static async create(req: Request, res: Response) {
@@ -8,12 +9,12 @@ class UsersController {
     return res.status(201).json(response);
   }
 
-  //   static async listOne(req: Request, res: Response) {
-  //     const clientId = req.user.id;
-  //     const response: IClientCreate = await ClientService.listOne(clientId);
+  static async listOne(req: Request, res: Response) {
+    const userId = req.params.id;
+    const response: ICreateUser = await UsersService.listOne(userId);
 
-  //     return res.status(201).json(response);
-  //   }
+    return res.status(201).json(response);
+  }
 
   //   static async update(req: Request, res: Response) {
   //     const clientData = req.body;
