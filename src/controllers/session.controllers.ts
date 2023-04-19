@@ -9,9 +9,9 @@ export interface IUsersLogin {
 class SessionControllers {
   static async login(req: Request, res: Response) {
     const userData: IUsersLogin = req.body;
-    const token = await SessionServices.login(userData);
+    const response = await SessionServices.login(userData);
 
-    return res.json({ token });
+    return res.json(response);
   }
 }
 export default SessionControllers;
