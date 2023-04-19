@@ -16,23 +16,28 @@ class UsersController {
     return res.status(201).json(response);
   }
 
-  //   static async update(req: Request, res: Response) {
-  //     const clientData = req.body;
-  //     const clientId: string = req.user.id;
-  //     const response: IClientCreate = await ClientService.update(
-  //       clientData,
-  //       clientId
-  //     );
+  static async listAllCars(req: Request, res: Response) {
+    const userId = req.params.id;
+    const query = req.query;
+    const response: any = await UsersService.listAllCars(userId, query);
 
-  //     return res.status(200).json(response);
-  //   }
+    return res.status(201).json(response);
+  }
 
-  //   static async delete(req: Request, res: Response) {
-  //     const clientId = req.user.id;
-  //     const response = await ClientService.delete(clientId);
+  static async update(req: Request, res: Response) {
+    const userData = req.body;
+    const userId: string = req.user.id;
+    const response: any = await UsersService.update(userData, userId);
 
-  //     return res.status(204).json(response);
-  //   }
+    return res.status(200).json(response);
+  }
+
+  static async delete(req: Request, res: Response) {
+    const userId = req.user.id;
+    const response = await UsersService.delete(userId);
+
+    return res.status(204).json(response);
+  }
 }
 
 export default UsersController;

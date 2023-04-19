@@ -50,7 +50,7 @@ export class CarsServices {
     const cars = await carsRepository.find({ relations: { images: true } });
 
     return {
-      message: "Produtos listados com sucesso",
+      message: "Carros listados com sucesso",
       ...paginate({
         list: cars.reverse(),
         query,
