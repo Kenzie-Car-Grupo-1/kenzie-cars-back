@@ -5,8 +5,23 @@ import Middlewares from "../middlewares/auth.middlewares";
 
 export const carRoutes = Router();
 
-carRoutes.post("", Middlewares.Auth, CarsController.create);
+carRoutes.post(
+  "",
+  Middlewares.Auth,
+  Middlewares.EnsureIsSaleman,
+  CarsController.create
+);
 carRoutes.get("", validQueryPaginationMiddleware, CarsController.listAll);
 carRoutes.get("/:carId", CarsController.listOne);
-carRoutes.patch("/:carId", CarsController.update);
-carRoutes.delete("/:carId", CarsController.delete);
+carRoutes.patch(
+  "/:carId",
+  Middlewares.Auth,
+  Middlewares.IsOwner,
+  CarsController.update
+);
+carRoutes.delete(
+  "/:carId",
+  Middlewares.Auth,
+  Middlewares.IsOwner,
+  CarsController.delete
+);

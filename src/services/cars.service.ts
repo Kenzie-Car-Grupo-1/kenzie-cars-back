@@ -61,10 +61,12 @@ export class CarsServices {
   static async listOne(carId: any) {
     const carsRepository = AppDataSource.getRepository(CarAd);
 
-    const carsAd = await carsRepository.findOne({
+    const carsAd: any = await carsRepository.findOne({
       where: { id: carId },
-      relations: { images: true },
+      relations: { images: true, user: true },
     });
+
+    delete carsAd.user.password;
 
     return carsAd;
   }
