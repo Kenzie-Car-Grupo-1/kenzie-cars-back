@@ -47,7 +47,9 @@ export class CarsServices {
   static async listAll(query: object) {
     const carsRepository = AppDataSource.getRepository(CarAd);
 
-    const cars = await carsRepository.find({ relations: { images: true } });
+    const cars = await carsRepository.find({
+      relations: { images: true, user: true },
+    });
 
     return {
       message: "Carros listados com sucesso",

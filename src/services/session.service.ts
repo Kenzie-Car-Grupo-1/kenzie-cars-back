@@ -6,10 +6,10 @@ import AppError from "../errors/appError";
 import { Users } from "../entities/user.entity";
 
 class SessionServices {
-  static async login({ email, password }: any): Promise<string> {
+  static async login({ email, password }: any): Promise<object> {
     const userRepository = AppDataSource.getRepository(Users);
 
-    const user = await userRepository.findOneBy({
+    const user: any = await userRepository.findOneBy({
       email: email,
     });
 
@@ -27,8 +27,8 @@ class SessionServices {
       subject: user.id,
       expiresIn: "24h",
     });
-
-    return token;
+    delete user.password;
+    return { token, user };
   }
 }
 
