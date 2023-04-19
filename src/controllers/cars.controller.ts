@@ -5,8 +5,9 @@ import { ICarsAdCreate, ICarsAdUpdate } from "../interface/carsAd.interface";
 export class CarsController {
   static async create(req: Request, res: Response) {
     const data: ICarsAdCreate = req.body;
+    const userId: string = req.user.id;
 
-    const response = await CarsServices.create(data);
+    const response = await CarsServices.create(data, userId);
 
     return res.status(201).json(response);
   }

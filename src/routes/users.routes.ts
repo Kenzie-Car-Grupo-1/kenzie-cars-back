@@ -10,3 +10,4 @@ usersRouter.post(
   ensureDataIsValidMiddleware(CreateUserSerializer),
   UsersController.create
 );
+usersRouter.get("/:id", UsersController.listOne);
