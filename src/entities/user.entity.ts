@@ -42,6 +42,8 @@ export class Users extends Date {
   cars: CarAd[];
   @OneToMany(() => Comment, (comment) => comment.user)
   comment: Comment[];
+  @Column({ type: "uuid", nullable: true })
+  reset_token: string | null;
 
   @BeforeInsert()
   hashPassword() {

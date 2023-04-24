@@ -4,7 +4,10 @@ import { Users } from "../entities/user.entity";
 import Address from "../entities/address.entity";
 import { CarAd } from "../entities/cars.entity";
 import { paginate } from "../utils/pagination.util";
-import { hash } from "bcryptjs";
+import { hash, hashSync } from "bcryptjs";
+import AppError from "../errors/appError";
+import { randomUUID } from "node:crypto";
+import { emailService } from "../utils/sendEmail.util";
 
 class UsersService {
   static async create(data: any) {
@@ -85,6 +88,60 @@ class UsersService {
     });
 
     return user;
+  }
+
+  static async sendResetEmailPassword(
+    email: string,
+    protocol: string,
+    host: string
+  ) {
+    const userRepository = AppDataSource.getRepository(Users);
+
+    const findUser = await userRepository.findOneBy({
+      email: email,
+    });
+
+    if (!findUser) {
+      throw new AppError("user not found", 404);
+    }
+
+    const name = findUser.firstname + " " + findUser.lastname;
+
+    const resetToken: string = randomUUID();
+
+    await userRepository.update(
+      { id: findUser.id },
+      { reset_token: resetToken }
+    );
+
+    const resetPasswordTemplate = emailService.resetPasswordTemplate(
+      email,
+      name,
+      protocol,
+      host,
+      resetToken
+    );
+
+    await emailService.sendEmail(resetPasswordTemplate);
+  }
+
+  static async resetPassword(password: string, resetToken: string) {
+    const userRepository = AppDataSource.getRepository(Users);
+
+    const findUser = await userRepository.findOneBy({
+      reset_token: resetToken,
+    });
+
+    console.log(findUser);
+
+    if (!findUser) {
+      throw new AppError("User not found", 404);
+    }
+
+    await userRepository.update(findUser.id, {
+      password: hashSync(password, 10),
+      reset_token: null,
+    });
   }
 }
 

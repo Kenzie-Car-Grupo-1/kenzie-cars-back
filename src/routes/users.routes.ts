@@ -4,6 +4,8 @@ import ensureDataIsValidMiddleware from "../middlewares/ensureDataValid.middlewa
 import {
   CreateUserSerializer,
   UpdateUserSerializer,
+  resetPasswordSerializer,
+  sendEmailResetSerializer,
 } from "../serializers/users.serializers";
 import validQueryPaginationMiddleware from "../middlewares/pagination.middleware";
 import Middlewares from "../middlewares/auth.middlewares";
@@ -28,3 +30,15 @@ usersRouter.patch(
   UsersController.update
 );
 usersRouter.delete("", Middlewares.Auth, UsersController.delete);
+
+usersRouter.post(
+  "/resetPassword",
+  ensureDataIsValidMiddleware(sendEmailResetSerializer),
+  UsersController.sendResetEmailPassword
+);
+
+usersRouter.patch(
+  "/resetPassword/:token",
+  ensureDataIsValidMiddleware(resetPasswordSerializer),
+  UsersController.resetPassword
+);
