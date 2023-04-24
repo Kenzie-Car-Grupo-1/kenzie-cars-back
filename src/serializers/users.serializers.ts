@@ -63,3 +63,11 @@ export const UpdateUserSerializer: any = yup.object().shape({
   description: yup.string().notRequired(),
   isSalesman: yup.boolean().notRequired(),
 });
+
+export const sendEmailResetSerializer: any = yup.object().shape({
+  email: yup.string().email().required(),
+});
+
+export const resetPasswordSerializer: any = yup.object().shape({
+  password: yup.string().required(),
+});

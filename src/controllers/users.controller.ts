@@ -38,6 +38,25 @@ class UsersController {
 
     return res.status(204).json(response);
   }
+
+  static async sendResetEmailPassword(req: Request, res: Response) {
+    const { email } = req.body;
+    const { protocol } = req;
+    const host = req.get("host");
+
+    await UsersService.sendResetEmailPassword(email, protocol, host!);
+
+    return res.json({ message: "token send" });
+  }
+
+  static async resetPassword(req: Request, res: Response) {
+    const { password } = req.body;
+    const { token } = req.params;
+
+    await UsersService.resetPassword(password, token);
+
+    return res.json({ message: "password change with sucess" });
+  }
 }
 
 export default UsersController;
