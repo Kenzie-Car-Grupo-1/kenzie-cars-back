@@ -15,6 +15,7 @@ export function paginate({
   const page = Number(pg);
   const perPage = Number(pp);
   const partial = serializerStringType(pl);
+  let sumValidation = 0;
 
   !countPerPage ? (countPerPage = perPage) : null;
 
@@ -54,6 +55,50 @@ export function paginate({
         );
         const isLevelsKeys = keys.length > 1;
 
+        // Verifica se a chave é "min_kms"
+        if (keys[0] === "min_kms") {
+          // Compara o valor de "item.kms" com o valor de "search[1]"
+          if (item.kms >= Number(search[1])) {
+            validationsPassed += 1;
+            sumValidation += 1;
+          }
+        }
+
+        // Verifica se a chave é "max_kms"
+        if (keys[0] === "max_kms") {
+          // Compara o valor de "item.kms" com o valor de "search[1]"
+          if (item.kms <= Number(search[1])) {
+            validationsPassed += 1;
+            sumValidation += 1;
+          }
+        }
+
+        // Verifica se a chave é "min_price"
+        if (keys[0] === "min_price") {
+          // Compara o valor de "item.price" com o valor de "search[1]"
+          if (Number(item.price) >= Number(search[1])) {
+            validationsPassed += 1;
+            sumValidation += 1;
+          }
+        }
+
+        // Verifica se a chave é "max_price"
+        if (keys[0] === "max_price") {
+          // Compara o valor de "item.price" com o valor de "search[1]"
+          if (Number(item.price) <= Number(search[1])) {
+            validationsPassed += 1;
+            sumValidation += 1;
+          }
+        }
+
+        if (keys[0] === "year" && search[1] == "2015") {
+          // Compara o valor de "item.price" com o valor de "search[1]"
+          if (Number(item.year) <= 2015) {
+            validationsPassed += 1;
+            sumValidation += 1;
+          }
+        }
+
         if (isLevelsKeys) {
           const { type: typeKeysTwo, result: keyTwo } = serializerStringType(
             `${item[keys[0]][keys[1]]}`
@@ -62,6 +107,7 @@ export function paginate({
 
           if (isString ? `${keyTwo}`.includes(`${value}`) : keyTwo == value) {
             validationsPassed += 1;
+            sumValidation += 1;
           }
         } else {
           const { type: typekeyOne, result: keyOne } = serializerStringType(
@@ -71,11 +117,14 @@ export function paginate({
 
           if (isString ? `${keyOne}`.includes(`${value}`) : keyOne == value) {
             validationsPassed += 1;
+            sumValidation += 1;
           }
         }
       });
 
       if (partial) {
+        console.log(validationsPassed);
+
         return validationsPassed > 0;
       }
 
@@ -100,6 +149,8 @@ export function paginate({
   const loopQuanty = count == 0 && listPaginate.length != 0 ? 1 : count;
 
   for (let i = 1; i <= loopQuanty; i++) {
+    console.log(i);
+
     newList.push(listPaginate.splice(0, countPerPage));
   }
 
