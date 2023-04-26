@@ -48,7 +48,7 @@ class UsersService {
     const userRepository = AppDataSource.getRepository(Users);
     const findUser: any = await userRepository.findOne({
       where: { id: userId },
-      relations: { cars: true },
+      relations: { cars: { images: true } },
     });
 
     return {
