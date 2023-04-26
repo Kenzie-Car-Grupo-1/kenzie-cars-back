@@ -23,7 +23,7 @@ class EmailService {
       .then(() => {
         console.log("Email send with sucess");
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.log(err);
         throw new AppError("Error sending email, try again later", 500);
       });
