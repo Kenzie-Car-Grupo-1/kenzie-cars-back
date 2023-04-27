@@ -9,8 +9,9 @@ class SessionServices {
   static async login({ email, password }: any): Promise<object> {
     const userRepository = AppDataSource.getRepository(Users);
 
-    const user: any = await userRepository.findOneBy({
-      email: email,
+    const user: any = await userRepository.findOne({
+      where: { email: email },
+      relations: { address: true },
     });
 
     if (!user) {
@@ -27,6 +28,7 @@ class SessionServices {
       subject: user.id,
       expiresIn: "24h",
     });
+
     delete user.password;
     return { token, user };
   }

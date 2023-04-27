@@ -4,4 +4,4 @@ import AddressController from "../controllers/address.controller";
 
 export const addressRoute = Router();
 
-addressRoute.patch("", Middlewares.Auth, AddressController.update);
+addressRoute.patch("/:id", Middlewares.Auth, AddressController.update);
