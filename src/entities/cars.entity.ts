@@ -1,10 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+} from "typeorm";
 import { CarImage } from "./carImages.entity";
+import { Users } from "./user.entity";
+import Comment from "./comment.entity";
 
-@Entity()
+@Entity("cars")
 export class CarAd {
   @PrimaryGeneratedColumn("uuid")
-  id: number;
+  id: string;
 
   @Column({ type: "varchar", length: 50, nullable: false })
   brand: string;
@@ -30,6 +38,14 @@ export class CarAd {
   @Column({ type: "varchar", length: 255, nullable: false })
   description: string;
 
-  @OneToMany(() => CarImage, (carImage) => carImage.car, { cascade: true })
+  @OneToMany(() => CarImage, (carImage) => carImage.car, {
+    nullable: true,
+  })
   images: CarImage[];
+
+  @ManyToOne(() => Users, { onDelete: "CASCADE" })
+  user: Users;
+
+  @OneToMany(() => Comment, (comment) => comment.car)
+  comment: Comment[];
 }
