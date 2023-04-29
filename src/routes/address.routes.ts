@@ -2,6 +2,6 @@ import { Router } from "express";
 import Middlewares from "../middlewares/auth.middlewares";
 import AddressController from "../controllers/address.controller";
 
-export const addressRoute = Router();
+export const addressRoutes = Router();
 
-addressRoute.patch("/:id", Middlewares.Auth, AddressController.update);
+addressRoutes.patch("/:id", Middlewares.Auth, AddressController.update);

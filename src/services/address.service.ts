@@ -10,7 +10,6 @@ class AddressService {
 
     const user = await userRepository.findOneBy({ id: userId })
 
-    // const address = await addressRepository.findOneBy({ id: userId });
     const address = await addressRepository.findOne({
       where: { id: addressId },
       relations: { user: true },
