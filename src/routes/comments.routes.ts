@@ -1,11 +1,18 @@
 import { Router } from "express";
 import { CommentsController } from "../controllers/comments.controller";
 import Middlewares from "../middlewares/auth.middlewares";
+import ensureDataIsValidMiddleware from "../middlewares/ensureDataValid.middleware";
+import { CreateCommentSerializer } from "../serializers/comments.serializers";
 
 export const commentRoutes = Router();
 
-commentRoutes.post("", Middlewares.Auth, CommentsController.create);
-commentRoutes.get("", CommentsController.list);
+commentRoutes.post(
+  "/:carId",
+  Middlewares.Auth,
+  ensureDataIsValidMiddleware(CreateCommentSerializer),
+  CommentsController.create
+);
+commentRoutes.get("/:carId", CommentsController.list);
 commentRoutes.patch(
   "/:commentId",
   Middlewares.Auth,

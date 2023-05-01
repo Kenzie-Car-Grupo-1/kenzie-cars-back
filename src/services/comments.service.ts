@@ -1,50 +1,78 @@
 import { CarAd } from "./../entities/cars.entity";
 import AppDataSource from "../data-source";
-import Comment from "../entities/comment.entity";
+import { Comment } from "../entities/comment.entity";
 import { Users } from "../entities/user.entity";
 import {
   ICommentCreate,
+  ICommentResponse,
   ICommentUpdate,
+  IUserComment,
 } from "../interface/comments.interface";
 import { ICreateUserResponse } from "../interface/users.interface";
 import { paginate } from "../utils/pagination.util";
+import moment from "moment";
+import { CreateCommentResponseSerializer } from "../serializers/comments.serializers";
 
 export class CommentsService {
-  static async create(data: any, adId: string, userId: string) {
+  static async create(data: any, adId: string, userId: string): Promise<ICommentResponse> {
+    // 
     const commentsRepository = AppDataSource.getRepository(Comment);
     const carRepository = AppDataSource.getRepository(CarAd);
     const userRepository = AppDataSource.getRepository(Users);
 
     const userSalesman = await userRepository.findOne({
       where: { id: userId },
-    });
-    const carAd = await carRepository.findOne({ where: { id: adId } });
-
-    // data.user = userSalesman;
-    // data.car = carAd;
-    // const comment = commentsRepository.create(data);
-    const comment = commentsRepository.create({
-      ...data,
-      userId: userSalesman,
-      carId: carAd,
+      relations: { comment: true },
     });
 
-    return comment;
+    const carAd = await carRepository.findOne({
+      where: { id: adId },
+      relations: { comment: true },
+    });
+
+    data.user = userSalesman;
+    data.car = carAd;
+
+    const comment = commentsRepository.create(data);
+    await commentsRepository.save(comment);
+
+    const all = await commentsRepository.find()
+    console.log('1', all)
+
+    const returnedComment = await CreateCommentResponseSerializer.validate(
+      comment,
+      { stripUnknown: true }
+    );
+
+    return returnedComment;
+    // return comment;
   }
 
-  // static async listOne() {
+  // static async getOneDate(commentId: string) {
   //   const commentsRepository = AppDataSource.getRepository(Comment);
+
+  //   const comment = await commentsRepository.findOneBy({ id: commentId });
+  //   const today = moment().day();
+  //   console.log(today);
+  //   const commentDate = comment?.createdAt;
   // }
 
   static async list(adId: string) {
     const commentsRepository = AppDataSource.getRepository(Comment);
-    // const carRepository = AppDataSource.getRepository(CarAd);
+    const carRepository = AppDataSource.getRepository(CarAd);
 
-    const allComments = await commentsRepository.find({
-      relations: { car: true },
+    const car = await carRepository.findOne({
+      where: { id: adId },
+      relations: { comment: true },
     });
 
-    return allComments.reverse();
+    // const allComments = await commentsRepository.find({
+    //   where: { car: adId },
+    //   relations: { car: true },
+    // });
+
+    return car!.comment.reverse();
+    // return allComments.reverse();
   }
 
   static async update(data: ICommentUpdate, commentId: string) {
@@ -57,12 +85,16 @@ export class CommentsService {
       ...data,
     });
 
-    return updatedComment
+    return updatedComment;
   }
 
   static async delete(commentId: string) {
     const commentsRepository = AppDataSource.getRepository(Comment);
 
+    const deleteCommenta = await commentsRepository.findOneBy({
+      id: commentId,
+    });
+    console.log("2", deleteCommenta);
     const deleteComment = await commentsRepository.delete({ id: commentId });
 
     return deleteComment;

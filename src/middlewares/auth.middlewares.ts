@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from "express";
 import "dotenv/config";
 import { CarAd } from "../entities/cars.entity";
 import { Users } from "../entities/user.entity";
-import Comment from "../entities/comment.entity";
+import { Comment } from "../entities/comment.entity";
 
 class Middlewares {
   static async Auth(req: Request, res: Response, next: NextFunction) {
@@ -75,7 +75,7 @@ class Middlewares {
       );
     }
 
-    return next()
+    return next();
   }
   static async Example(req: Request, res: Response, next: NextFunction) {}
 }

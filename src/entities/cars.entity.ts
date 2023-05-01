@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { CarImage } from "./carImages.entity";
 import { Users } from "./user.entity";
-import Comment from "./comment.entity";
+import { Comment } from "./comment.entity";
 
 @Entity("cars")
 export class CarAd {

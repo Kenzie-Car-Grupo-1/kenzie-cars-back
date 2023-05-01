@@ -8,18 +8,19 @@ import {
 export class CommentsController {
   static async create(req: Request, res: Response) {
     const data: ICommentCreate = req.body;
-    const { id } = req.params;
+    const { carId } = req.params;
     const userId: string = req.user.id;
 
-    const response = await CommentsService.create(data, id, userId);
+    const response = await CommentsService.create(data, carId, userId);
 
     return res.status(201).json(response);
   }
 
   static async list(req: Request, res: Response) {
-    const { id } = req.params;
+    const { carId } = req.params;
+    console.log("oi", carId)
 
-    const response = await CommentsService.list(id);
+    const response = await CommentsService.list(carId);
 
     return res.status(200).json(response);
   }
@@ -34,7 +35,8 @@ export class CommentsController {
   }
 
   static async delete(req: Request, res: Response) {
-    const commentId: string = req.params.id;
+    console.log("1", req.params);
+    const { commentId } = req.params;
 
     const response = await CommentsService.delete(commentId);
 

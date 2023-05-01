@@ -27,6 +27,7 @@
     "jest": "^28.1.2",
     "jsonwebtoken": "^8.5.1",
     "mailgen": "^2.0.27",
+    "moment": "^2.29.4",
     "nodemailer": "^6.9.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",

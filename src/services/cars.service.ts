@@ -36,7 +36,7 @@ export class CarsServices {
 
     const carsAd: any = await carsRepository.findOne({
       where: { id: cars.id },
-      relations: { images: true, user: true },
+      relations: { images: true, user: true, comment: true },
     });
 
     delete carsAd.user.password;
@@ -48,7 +48,7 @@ export class CarsServices {
     const carsRepository = AppDataSource.getRepository(CarAd);
 
     const cars = await carsRepository.find({
-      relations: { images: true, user: true },
+      relations: { images: true, user: true, comment: true },
     });
 
     return {
@@ -65,7 +65,7 @@ export class CarsServices {
 
     const carsAd: any = await carsRepository.findOne({
       where: { id: carId },
-      relations: { images: true, user: true },
+      relations: { images: true, user: true, comment: true },
     });
 
     delete carsAd.user.password;
