@@ -12,11 +12,15 @@ export interface IUserComment {
   lastname: string;
 }
 
+export interface ICarComment {
+  id: string;
+}
+
 export interface ICommentResponse {
   id: string;
   text: string;
   user: IUserComment;
-  car: string;
+  car: ICarComment;
 }
 
 export interface ICommentUpdate {

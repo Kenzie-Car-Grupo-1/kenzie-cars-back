@@ -15,7 +15,6 @@ import { CreateCommentResponseSerializer } from "../serializers/comments.seriali
 
 export class CommentsService {
   static async create(data: any, adId: string, userId: string): Promise<ICommentResponse> {
-    // 
     const commentsRepository = AppDataSource.getRepository(Comment);
     const carRepository = AppDataSource.getRepository(CarAd);
     const userRepository = AppDataSource.getRepository(Users);
@@ -36,9 +35,6 @@ export class CommentsService {
     const comment = commentsRepository.create(data);
     await commentsRepository.save(comment);
 
-    const all = await commentsRepository.find()
-    console.log('1', all)
-
     const returnedComment = await CreateCommentResponseSerializer.validate(
       comment,
       { stripUnknown: true }
@@ -55,10 +51,10 @@ export class CommentsService {
   //   const today = moment().day();
   //   console.log(today);
   //   const commentDate = comment?.createdAt;
+  //   console.log("12", commentDate)
   // }
 
   static async list(adId: string) {
-    const commentsRepository = AppDataSource.getRepository(Comment);
     const carRepository = AppDataSource.getRepository(CarAd);
 
     const car = await carRepository.findOne({
@@ -66,13 +62,7 @@ export class CommentsService {
       relations: { comment: true },
     });
 
-    // const allComments = await commentsRepository.find({
-    //   where: { car: adId },
-    //   relations: { car: true },
-    // });
-
     return car!.comment.reverse();
-    // return allComments.reverse();
   }
 
   static async update(data: ICommentUpdate, commentId: string) {

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import { CommentsService } from "./../services/comments.service";
 import {
   ICommentCreate,
@@ -18,16 +18,23 @@ export class CommentsController {
 
   static async list(req: Request, res: Response) {
     const { carId } = req.params;
-    console.log("oi", carId)
 
     const response = await CommentsService.list(carId);
 
     return res.status(200).json(response);
   }
 
+  // static async getDate(req: Request, res: Response) {
+  //   const {commentId} = req.params
+
+  //   const response = await CommentsService.getOneDate(commentId)
+    
+  //   return res.status(200).json(response)
+  // }
+
   static async update(req: Request, res: Response) {
     const data: ICommentUpdate = req.body;
-    const commentId: string = req.params.id;
+    const { commentId } = req.params;
 
     const response = await CommentsService.update(data, commentId);
 
