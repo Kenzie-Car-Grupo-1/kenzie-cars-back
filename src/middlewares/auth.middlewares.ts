@@ -66,7 +66,11 @@ class Middlewares {
   static async IsCommentOwner(req: Request, res: Response, next: NextFunction) {
     const commentsRepository = AppDataSource.getRepository(Comment);
 
-    const comment = await commentsRepository.findOneBy({ id: req.params.id });
+    const comment = await commentsRepository.findOne({
+      where: { id: req.params.commentId },
+      relations: { user: true },
+    });
+    console.log(comment);
 
     if (comment?.user.id !== req.user.id) {
       throw new AppError(
