@@ -1,4 +1,4 @@
-import { Request, Response, response } from "express";
+import { Request, Response } from "express";
 import { CarsServices } from "../services/cars.service";
 import { ICarsAdCreate, ICarsAdUpdate } from "../interface/carsAd.interface";
 

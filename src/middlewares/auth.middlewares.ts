@@ -5,6 +5,7 @@ import { Request, Response, NextFunction } from "express";
 import "dotenv/config";
 import { CarAd } from "../entities/cars.entity";
 import { Users } from "../entities/user.entity";
+import { Comment } from "../entities/comment.entity";
 
 class Middlewares {
   static async Auth(req: Request, res: Response, next: NextFunction) {
@@ -62,6 +63,20 @@ class Middlewares {
     return next();
   }
 
+  static async IsCommentOwner(req: Request, res: Response, next: NextFunction) {
+    const commentsRepository = AppDataSource.getRepository(Comment);
+
+    const comment = await commentsRepository.findOneBy({ id: req.params.id });
+
+    if (comment?.user.id !== req.user.id) {
+      throw new AppError(
+        "You cannot do this operation because you are not the owner of the comment",
+        401
+      );
+    }
+
+    return next();
+  }
   static async Example(req: Request, res: Response, next: NextFunction) {}
 }
 export default Middlewares;

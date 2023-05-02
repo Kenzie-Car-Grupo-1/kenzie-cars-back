@@ -10,7 +10,7 @@ import { hashSync } from "bcryptjs";
 import Address from "./address.entity";
 import { Date } from "./date.entity";
 import { CarAd } from "./cars.entity";
-import Comment from "./comment.entity";
+import { Comment } from "./comment.entity";
 
 @Entity("users")
 export class Users extends Date {

@@ -10,34 +10,34 @@ import {
 import validQueryPaginationMiddleware from "../middlewares/pagination.middleware";
 import Middlewares from "../middlewares/auth.middlewares";
 
-export const usersRouter = Router();
+export const userRoutes = Router();
 
-usersRouter.post(
+userRoutes.post(
   "",
   ensureDataIsValidMiddleware(CreateUserSerializer),
   UsersController.create
 );
-usersRouter.get(
+userRoutes.get(
   "/:id/cars",
   validQueryPaginationMiddleware,
   UsersController.listAllCars
 );
-usersRouter.get("/:id", UsersController.listOne);
-usersRouter.patch(
+userRoutes.get("/:id", UsersController.listOne);
+userRoutes.patch(
   "",
   Middlewares.Auth,
   ensureDataIsValidMiddleware(UpdateUserSerializer),
   UsersController.update
 );
-usersRouter.delete("", Middlewares.Auth, UsersController.delete);
+userRoutes.delete("", Middlewares.Auth, UsersController.delete);
 
-usersRouter.post(
+userRoutes.post(
   "/resetPassword",
   ensureDataIsValidMiddleware(sendEmailResetSerializer),
   UsersController.sendResetEmailPassword
 );
 
-usersRouter.patch(
+userRoutes.patch(
   "/resetPassword/:token",
   ensureDataIsValidMiddleware(resetPasswordSerializer),
   UsersController.resetPassword
