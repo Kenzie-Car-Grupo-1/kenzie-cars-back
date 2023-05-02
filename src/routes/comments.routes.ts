@@ -13,7 +13,7 @@ commentRoutes.post(
   CommentsController.create
 );
 commentRoutes.get("/:carId", CommentsController.list);
-// commentRoutes.get("/:commentId", CommentsController.getDate);
+commentRoutes.get("/date/:commentId", CommentsController.getDate);
 commentRoutes.patch(
   "/:commentId",
   Middlewares.Auth,

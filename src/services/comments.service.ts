@@ -3,18 +3,17 @@ import AppDataSource from "../data-source";
 import { Comment } from "../entities/comment.entity";
 import { Users } from "../entities/user.entity";
 import {
-  ICommentCreate,
   ICommentResponse,
   ICommentUpdate,
-  IUserComment,
 } from "../interface/comments.interface";
-import { ICreateUserResponse } from "../interface/users.interface";
-import { paginate } from "../utils/pagination.util";
-import moment from "moment";
 import { CreateCommentResponseSerializer } from "../serializers/comments.serializers";
 
 export class CommentsService {
-  static async create(data: any, adId: string, userId: string): Promise<ICommentResponse> {
+  static async create(
+    data: any,
+    adId: string,
+    userId: string
+  ): Promise<ICommentResponse> {
     const commentsRepository = AppDataSource.getRepository(Comment);
     const carRepository = AppDataSource.getRepository(CarAd);
     const userRepository = AppDataSource.getRepository(Users);
@@ -41,18 +40,43 @@ export class CommentsService {
     );
 
     return returnedComment;
-    // return comment;
   }
 
-  // static async getOneDate(commentId: string) {
-  //   const commentsRepository = AppDataSource.getRepository(Comment);
+  static async getOneDate(commentId: string): Promise<string> {
+    const commentsRepository = AppDataSource.getRepository(Comment);
+    const comment = await commentsRepository.findOneBy({ id: commentId });
 
-  //   const comment = await commentsRepository.findOneBy({ id: commentId });
-  //   const today = moment().day();
-  //   console.log(today);
-  //   const commentDate = comment?.createdAt;
-  //   console.log("12", commentDate)
-  // }
+    const today = new Date();
+    const commentDate = new Date(comment!.createdAt);
+
+    if (
+      today.getDay() == commentDate.getDay() &&
+      today.getMonth() == commentDate.getMonth()
+    ) {
+      return "hoje";
+    } else {
+      if (today.getMonth() == commentDate.getMonth()) {
+        const dayDifference = today.getDay() - commentDate.getDay();
+        return dayDifference == 1 ? "há 1 dia" : `há ${dayDifference} dias`;
+      } else {
+        const monthDifference = today.getMonth() - commentDate.getMonth();
+        const dayDifference = today.getDay() - commentDate.getDay();
+        const timeDifference = dayDifference + monthDifference * 30;
+
+        if (dayDifference < 30) {
+          return `há ${timeDifference} dias`;
+        } else {
+          return monthDifference == 1
+            ? `há ${monthDifference} mês`
+            : monthDifference < 12
+            ? `há ${monthDifference} meses`
+            : monthDifference == 12
+            ? "há 1 ano"
+            : `há ${Math.round(monthDifference / 12)} anos`;
+        }
+      }
+    }
+  }
 
   static async list(adId: string) {
     const carRepository = AppDataSource.getRepository(CarAd);
