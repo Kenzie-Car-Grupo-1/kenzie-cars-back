@@ -4,7 +4,6 @@ import { ICarsAdCreate, ICarsAdUpdate } from "../interface/carsAd.interface";
 import { paginate } from "../utils/pagination.util";
 import { CarImage } from "../entities/carImages.entity";
 import { Users } from "../entities/user.entity";
-import { CreateCarsAdResponseSerializer } from "../serializers/carsAd.serializers";
 
 export class CarsServices {
   static async create(data: ICarsAdCreate, userId: string) {
@@ -22,8 +21,6 @@ export class CarsServices {
     await carsRepository.save(cars);
 
     if (images) {
-      const arrImg: CarImage[] = images;
-
       for await (const image of images) {
         const objImg: any = {
           url: image,
@@ -75,8 +72,19 @@ export class CarsServices {
 
   static async update(data: ICarsAdUpdate, carId: any) {
     const carsRepository = AppDataSource.getRepository(CarAd);
+    const carImagesRepository = AppDataSource.getRepository(CarImage);
 
-    const carsAd = await carsRepository.findOneBy({ id: carId });
+    const carsAd: any = await carsRepository.findOne({
+      where: { id: carId },
+      relations: { images: true, user: true, comment: true },
+    });
+
+    if (carsAd.images) {
+      for await (const image of carsAd.images) {
+        console.log(image);
+        await carImagesRepository.delete({ id: image.id });
+      }
+    }
 
     const carsAdUpdate: any = carsRepository.create({
       ...carsAd,
@@ -85,7 +93,26 @@ export class CarsServices {
 
     await carsRepository.save(carsAdUpdate);
 
-    return carsAdUpdate;
+    if (data.images) {
+      for await (const image of data.images!) {
+        const objImg: any = {
+          url: image,
+          car: carsAdUpdate,
+        };
+        const img = carImagesRepository.create(objImg);
+
+        await carImagesRepository.save(img);
+        console.log(img);
+      }
+    }
+    const carUpdated: any = await carsRepository.findOne({
+      where: { id: carsAdUpdate.id },
+      relations: { images: true, user: true, comment: true },
+    });
+
+    delete carUpdated.user.password;
+
+    return carUpdated;
   }
 
   static async delete(carId: any) {

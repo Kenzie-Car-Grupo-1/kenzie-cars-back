@@ -16,7 +16,7 @@ carRoutes.get("/:carId", CarsController.listOne);
 carRoutes.patch(
   "/:carId",
   Middlewares.Auth,
-  Middlewares.IsOwner,
+  // Middlewares.IsOwner,
   CarsController.update
 );
 carRoutes.delete(
