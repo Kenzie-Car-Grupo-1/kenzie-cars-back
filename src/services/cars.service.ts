@@ -4,7 +4,6 @@ import { ICarsAdCreate, ICarsAdUpdate } from "../interface/carsAd.interface";
 import { paginate } from "../utils/pagination.util";
 import { CarImage } from "../entities/carImages.entity";
 import { Users } from "../entities/user.entity";
-import { CreateCarsAdResponseSerializer } from "../serializers/carsAd.serializers";
 
 export class CarsServices {
   static async create(data: ICarsAdCreate, userId: string) {
@@ -75,8 +74,33 @@ export class CarsServices {
 
   static async update(data: ICarsAdUpdate, carId: any) {
     const carsRepository = AppDataSource.getRepository(CarAd);
+    const carImagesRepository = AppDataSource.getRepository(CarImage);
 
-    const carsAd = await carsRepository.findOneBy({ id: carId });
+    const carsAd: any = await carsRepository.findOne({
+      where: { id: carId },
+      relations: { images: true, user: true, comment: true },
+    });
+
+    const { images, ...rest } = data;
+
+    if (carsAd.images) {
+      for await (const image of carsAd.images) {
+        await carImagesRepository.delete({ id: image.id });
+      }
+    }
+
+    if (images) {
+      const arrImg: CarImage[] = images;
+
+      for await (const image of images) {
+        const objImg: any = {
+          url: image,
+          car: carsAd,
+        };
+        const img = carImagesRepository.create(objImg);
+        await carImagesRepository.save(img);
+      }
+    }
 
     const carsAdUpdate: any = carsRepository.create({
       ...carsAd,
@@ -85,7 +109,14 @@ export class CarsServices {
 
     await carsRepository.save(carsAdUpdate);
 
-    return carsAdUpdate;
+    const carUpdated: any = await carsRepository.findOne({
+      where: { id: carId },
+      relations: { images: true, user: true, comment: true },
+    });
+
+    delete carUpdated.user.password;
+
+    return carUpdated;
   }
 
   static async delete(carId: any) {
