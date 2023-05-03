@@ -15,6 +15,7 @@ export interface ICarsAdCreate {
 export interface CarAdRequestParams {
   carId: string;
 }
+
 export interface ICarsAdUpdate {
   brand?: string;
   model?: string;
@@ -24,5 +25,5 @@ export interface ICarsAdUpdate {
   color?: string;
   price?: string;
   description?: string;
-  images?: CarImage[];
+  images?: string[];
 }

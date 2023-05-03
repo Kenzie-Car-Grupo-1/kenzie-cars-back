@@ -21,8 +21,6 @@ export class CarsServices {
     await carsRepository.save(cars);
 
     if (images) {
-      const arrImg: CarImage[] = images;
-
       for await (const image of images) {
         const objImg: any = {
           url: image,
@@ -81,24 +79,10 @@ export class CarsServices {
       relations: { images: true, user: true, comment: true },
     });
 
-    const { images, ...rest } = data;
-
     if (carsAd.images) {
       for await (const image of carsAd.images) {
+        console.log(image);
         await carImagesRepository.delete({ id: image.id });
-      }
-    }
-
-    if (images) {
-      const arrImg: CarImage[] = images;
-
-      for await (const image of images) {
-        const objImg: any = {
-          url: image,
-          car: carsAd,
-        };
-        const img = carImagesRepository.create(objImg);
-        await carImagesRepository.save(img);
       }
     }
 
@@ -109,8 +93,20 @@ export class CarsServices {
 
     await carsRepository.save(carsAdUpdate);
 
+    if (data.images) {
+      for await (const image of data.images!) {
+        const objImg: any = {
+          url: image,
+          car: carsAdUpdate,
+        };
+        const img = carImagesRepository.create(objImg);
+
+        await carImagesRepository.save(img);
+        console.log(img);
+      }
+    }
     const carUpdated: any = await carsRepository.findOne({
-      where: { id: carId },
+      where: { id: carsAdUpdate.id },
       relations: { images: true, user: true, comment: true },
     });
 
