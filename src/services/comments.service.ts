@@ -14,7 +14,11 @@ import moment from "moment";
 import { CreateCommentResponseSerializer } from "../serializers/comments.serializers";
 
 export class CommentsService {
-  static async create(data: any, adId: string, userId: string): Promise<ICommentResponse> {
+  static async create(
+    data: any,
+    adId: string,
+    userId: string
+  ): Promise<ICommentResponse> {
     const commentsRepository = AppDataSource.getRepository(Comment);
     const carRepository = AppDataSource.getRepository(CarAd);
     const userRepository = AppDataSource.getRepository(Users);
@@ -66,6 +70,7 @@ export class CommentsService {
   }
 
   static async update(data: ICommentUpdate, commentId: string) {
+    console.log(commentId);
     const commentsRepository = AppDataSource.getRepository(Comment);
 
     const comment = await commentsRepository.findOneBy({ id: commentId });

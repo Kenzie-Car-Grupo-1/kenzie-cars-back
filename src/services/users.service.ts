@@ -1,8 +1,6 @@
-import { Request, Response } from "express";
 import AppDataSource from "../data-source";
 import { Users } from "../entities/user.entity";
 import Address from "../entities/address.entity";
-import { CarAd } from "../entities/cars.entity";
 import { paginate } from "../utils/pagination.util";
 import { hash, hashSync } from "bcryptjs";
 import AppError from "../errors/appError";

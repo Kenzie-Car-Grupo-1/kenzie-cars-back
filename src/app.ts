@@ -2,10 +2,6 @@ import "reflect-metadata";
 import "express-async-errors";
 import express from "express";
 import cors from "cors";
-import "swagger-ui-express";
-import "swagger.json";
-// const swaggerUi = require('swagger-ui-express');
-// const swaggerDocument = require('./swagger.json');
 
 import { carRoutes } from "./routes/cars.routes";
 import { userRoutes } from "./routes/users.routes";
@@ -25,7 +21,5 @@ app.use("/address", addressRoutes);
 app.use("/comments", commentRoutes);
 
 app.use(handleError);
-app.use("/api-docs", swagger);
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default app;

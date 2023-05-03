@@ -28,12 +28,13 @@ export class CommentsController {
   //   const {commentId} = req.params
 
   //   const response = await CommentsService.getOneDate(commentId)
-    
+
   //   return res.status(200).json(response)
   // }
 
   static async update(req: Request, res: Response) {
     const data: ICommentUpdate = req.body;
+    console.log(req.params);
     const { commentId } = req.params;
 
     const response = await CommentsService.update(data, commentId);
