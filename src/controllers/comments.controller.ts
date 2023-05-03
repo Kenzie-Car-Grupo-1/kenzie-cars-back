@@ -24,13 +24,13 @@ export class CommentsController {
     return res.status(200).json(response);
   }
 
-  // static async getDate(req: Request, res: Response) {
-  //   const {commentId} = req.params
+  static async getDate(req: Request, res: Response) {
+    const { commentId } = req.params;
 
-  //   const response = await CommentsService.getOneDate(commentId)
-    
-  //   return res.status(200).json(response)
-  // }
+    const response = await CommentsService.getOneDate(commentId);
+
+    return res.status(200).json(response);
+  }
 
   static async update(req: Request, res: Response) {
     const data: ICommentUpdate = req.body;
@@ -42,7 +42,6 @@ export class CommentsController {
   }
 
   static async delete(req: Request, res: Response) {
-    console.log("1", req.params);
     const { commentId } = req.params;
 
     const response = await CommentsService.delete(commentId);
