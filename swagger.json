@@ -1,0 +1,882 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Kenzie Cars",
+    "description": "Kenzie Cars is an API developed to save and provide all informations about car buying and selling. Among all the functionalities, it's possible to execute all CRUD operations (creation, read, update and delete). The API ensure to make CRUD of users, ads and comments. Also it is possible to choose user's type at the moment of the register (if user is a salesman or a common user). Some of the functionalities are available only for salesmen.",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the user",
+            "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+          },
+          "firstname": {
+            "type": "string",
+            "description": "The firstname of the user",
+            "example": "John"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "The lastname of the user",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the user",
+            "example": "johndoe@example.com"
+          },
+          "cpf": {
+            "type": "string",
+            "description": "The document's number of individual registration",
+            "example": "1112223344"
+          },
+          "contact": {
+            "type": "string",
+            "description": "The phone number of the user",
+            "example": "(11) 91234-5678"
+          },
+          "isWhatsapp": {
+            "type": "boolean",
+            "description": "The user's contact is also its whatsapp number",
+            "example": "true"
+          },
+          "birthdate": {
+            "type": "string",
+            "description": "The birthdate of the user",
+            "example": "12/01/2000"
+          },
+          "description": {
+            "type": "string",
+            "description": "A brief description of the user",
+            "example": "I'm here to sell my car"
+          },
+          "isSalesman": {
+            "type": "boolean",
+            "description": "The user is a salesman or a common user",
+            "example": "false"
+          },
+          "address": {
+            "type": "array",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique identifier for the address",
+                "example": "d5182e34-98tb-4c4a-84e2-fb7r23b52409"
+              },
+              "street": {
+                "type": "string",
+                "description": "The name of the main street",
+                "example": "25th Avenue"
+              },
+              "number": {
+                "type": "number",
+                "description": "The number of user's address",
+                "example": 32
+              },
+              "zip_code": {
+                "type": "string",
+                "description": "The zip code of user's address",
+                "example": "987654320"
+              },
+              "city": {
+                "type": "string",
+                "description": "The city of user's address",
+                "example": "São Paulo"
+              },
+              "state": {
+                "type": "string",
+                "description": "The state of user's address",
+                "example": "SP"
+              },
+              "complement": {
+                "type": "string",
+                "description": "Any additional information of user's address",
+                "example": "Close to National Bank"
+              }
+            }
+          },
+          "required": [
+            "firstname",
+            "lastname",
+            "email",
+            "cpf",
+            "contact",
+            "address"
+          ]
+        }
+      },
+      "UserRequest": {
+        "type": "object",
+        "properties": {
+          "firstname": {
+            "type": "string",
+            "description": "The firstname of the user",
+            "example": "John"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "The lastname of the user",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the user",
+            "example": "johndoe@example.com"
+          },
+          "cpf": {
+            "type": "string",
+            "description": "The document's number of individual registration",
+            "example": "1112223344"
+          },
+          "password": {
+            "type": "string",
+            "description": "The password of the client",
+            "example": "123456"
+          },
+          "contact": {
+            "type": "string",
+            "description": "The phone number of the user",
+            "example": "(11) 91234-5678"
+          },
+          "isWhatsapp": {
+            "type": "boolean",
+            "description": "The user's contact is also its whatsapp number",
+            "example": "true"
+          },
+          "birthdate": {
+            "type": "string",
+            "description": "The birthdate of the user",
+            "example": "12/01/2000"
+          },
+          "description": {
+            "type": "string",
+            "description": "A brief description of the user",
+            "example": "I'm here to sell my car"
+          },
+          "isSalesman": {
+            "type": "boolean",
+            "description": "The user is a salesman or a common user",
+            "example": "false"
+          },
+          "address": {
+            "type": "array",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique identifier for the address",
+                "example": "d5182e34-98tb-4c4a-84e2-fb7r23b52409"
+              },
+              "street": {
+                "type": "string",
+                "description": "The name of the main street",
+                "example": "25th Avenue"
+              },
+              "number": {
+                "type": "number",
+                "description": "The number of user's address",
+                "example": 32
+              },
+              "zip_code": {
+                "type": "string",
+                "description": "The zip code of user's address",
+                "example": "987654320"
+              },
+              "city": {
+                "type": "string",
+                "description": "The city of user's address",
+                "example": "São Paulo"
+              },
+              "state": {
+                "type": "string",
+                "description": "The state of user's address",
+                "example": "SP"
+              },
+              "complement": {
+                "type": "string",
+                "description": "Any additional information of user's address",
+                "example": "Close to National Bank"
+              }
+            }
+          }
+        }
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstname": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "lastname": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 50,
+            "format": "email"
+          },
+          "cpf": {
+            "type": "string",
+            "maxLength": 11
+          },
+          "contact": {
+            "type": "string",
+            "maxLength": 11
+          },
+          "isWhatsapp": {
+            "type": "boolean",
+            "default": false
+          },
+          "birthdate": {
+            "type": "string",
+            "maxLength": 10,
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "default": false
+          },
+          "isSalesman": {
+            "type": "boolean",
+            "default": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "address": {
+            "type": "array",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "street": {
+                "type": "string",
+                "maxLength": 50
+              },
+              "number": {
+                "type": "number"
+              },
+              "zip_code": {
+                "type": "string",
+                "maxLength": 9
+              },
+              "city": {
+                "type": "string",
+                "maxLength": 25
+              },
+              "state": {
+                "type": "string",
+                "maxLength": 2
+              },
+              "complement": {
+                "type": "string",
+                "default": ""
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              }
+            }
+          }
+        },
+        "example": {
+          "id": "29e1eafc-9155-4bbb-a4bc-a03bafd1c60e",
+          "firstname": "Fulano",
+          "lastname": "Silva",
+          "email": "fulano@mail.com",
+          "cpf": "85742202278",
+          "contact": "92890298022",
+          "isWhatsapp": true,
+          "birthdate": "13/08/1978",
+          "description": "Vendedor de carros",
+          "isSalesman": true,
+          "reset_token": null,
+          "createdAt": "2023-05-01T13:09:18.418Z",
+          "updatedAt": "2023-05-01T13:09:18.418Z",
+          "address": [
+            {
+              "createdAt": "2023-05-01T13:09:18.535Z",
+              "updatedAt": "2023-05-01T13:09:18.535Z",
+              "id": "881c6f6d-408f-462b-bcae-057694be73a8",
+              "street": "rua b",
+              "number": "33",
+              "cep": "12343470",
+              "city": "Belém",
+              "state": "Pará",
+              "complement": "Próximo ao Hospital Central"
+            }
+          ]
+        }
+      },
+      "Car": {
+        "type": "object",
+        "properties": {
+          "brand": {
+            "type": "string",
+            "description": "The brand of the car",
+            "example": "Ford"
+          },
+          "model": {
+            "type": "string",
+            "description": "The model of the car",
+            "example": "Ka"
+          },
+          "year": {
+            "type": "string",
+            "maxLength": 4,
+            "description": "The year of car's fabrication",
+            "example": "2022"
+          },
+          "fuel_type": {
+            "type": "string",
+            "description": "The type of car's fuel",
+            "example": "+1 (555) 123-4567"
+          },
+          "kms": {
+            "type": "number",
+            "description": "The amount of kilometers that car was used",
+            "example": 0
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 10,
+            "description": "The color of the car",
+            "example": "black"
+          },
+          "price": {
+            "type": "string",
+            "maxLength": 8,
+            "description": "The price of the car",
+            "example": "100000"
+          },
+          "description": {
+            "type": "string",
+            "description": "A brief description of the car",
+            "example": "Car 0km made in 2022"
+          },
+          "images": {
+            "type": "array",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "A link provided with car's image",
+                "example": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+              }
+            }
+          }
+        },
+        "required": [
+          "brand",
+          "model",
+          "year",
+          "full_type",
+          "kms",
+          "color",
+          "price",
+          "description"
+        ]
+      },
+      "CarResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of the newly created car ad."
+          },
+          "brand": {
+            "type": "string",
+            "description": "The brand of the car"
+          },
+          "model": {
+            "type": "string",
+            "description": "The model of the car"
+          },
+          "year": {
+            "type": "string",
+            "description": "The year of car's fabrication"
+          },
+          "fuel_type": {
+            "type": "string",
+            "description": "The type of car's fuel"
+          },
+          "kms": {
+            "type": "number",
+            "description": "The amount of kilometers that car was used"
+          },
+          "color": {
+            "type": "string",
+            "description": "The color of the car"
+          },
+          "price": {
+            "type": "string",
+            "description": "The price of the car"
+          },
+          "description": {
+            "type": "string",
+            "description": "A brief description of the car"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of when the contact was created."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of when the contact was last updated."
+          },
+          "images": {
+            "type": "array",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Id of the image from the newly car ad"
+              },
+              "url": {
+                "type": "string",
+                "description": "A link provided with car's image"
+              }
+            }
+          }
+        },
+        "example": {
+          "id": "fda66560-a56f-4ca6-be45-a4b8248efb68",
+          "brand": "ford",
+          "model": "Fiesta",
+          "year": "2010",
+          "fuel_type": "gas",
+          "kms": 1000,
+          "color": "black",
+          "price": "15000",
+          "description": "asdhsaudhsuah asuhdu ausdhu uahsdu uahsdu aushduhasd",
+          "images": [
+            {
+              "id": "8138bea8-82e2-49b4-b97f-c8ff525fbe79",
+              "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+            },
+            {
+              "id": "f85c3e67-3446-4402-86d7-3ab4f5cd9848",
+              "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+            },
+            {
+              "id": "f5cd12fb-2c45-48eb-ae9e-d5832af9597b",
+              "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+            },
+            {
+              "id": "5d659ddc-ad31-4eae-ab13-1bfe918ca26d",
+              "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+            },
+            {
+              "id": "0e1157f3-9674-46b5-b7b4-ff9487358b4b",
+              "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+            },
+            {
+              "id": "87d94360-138f-4f18-8a0a-1216d88bdf4b",
+              "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+            }
+          ],
+          "user": {
+            "createdAt": "2023-05-01T13:09:18.418Z",
+            "updatedAt": "2023-05-01T13:09:18.418Z",
+            "id": "29e1eafc-9155-4bbb-a4bc-a03bafd1c60e",
+            "firstname": "Fulano",
+            "lastname": "Silva",
+            "email": "fulano@mail.com",
+            "cpf": "85742202278",
+            "contact": "92890298022",
+            "isWhatsapp": true,
+            "birthdate": "13/08/1978",
+            "description": "Vendedor de carros",
+            "isSalesman": true,
+            "reset_token": null
+          },
+          "comment": []
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The comment of the user",
+            "example": "Great!"
+          }
+        },
+        "required": ["text"]
+      },
+      "CommentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of the newly created comment"
+          },
+          "text": {
+            "type": "string",
+            "description": "The comment of the user"
+          }
+        },
+        "example": {
+          "id": "8bb356ff-0605-489c-a98e-f70a2e679a28",
+          "text": "Olá!",
+          "updatedAt": "Tue May 02 2023 17:02:17 GMT-0300 (Horário Padrão de Brasília)",
+          "createdAt": "Tue May 02 2023 17:02:17 GMT-0300 (Horário Padrão de Brasília)",
+          "user": {
+            "id": "29e1eafc-9155-4bbb-a4bc-a03bafd1c60e",
+            "firstname": "Fulano",
+            "lastname": "Silva"
+          },
+          "car": {
+            "id": "fda66560-a56f-4ca6-be45-a4b8248efb68"
+          }
+        }
+      },
+      "LoginCredentials": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address.",
+            "example": "user@example.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password.",
+            "example": "mypassword"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "SessionResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "JWT access token to use for authenticated requests.",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          },
+          "user": {
+            "type": "object",
+            "description": "User's iinformations",
+            "example": {
+              "id": "29e1eafc-9155-4bbb-a4bc-a03bafd1c60e",
+              "firstname": "Fulano",
+              "lastname": "Silva",
+              "email": "fulano@mail.com",
+              "cpf": "85742202278",
+              "contact": "92890298022",
+              "isWhatsapp": true,
+              "birthdate": "13/08/1978",
+              "description": "Vendedor de carros",
+              "isSalesman": true,
+              "reset_token": null,
+              "createdAt": "2023-05-01T13:09:18.418Z",
+              "updatedAt": "2023-05-01T13:09:18.418Z",
+              "address": [
+                {
+                  "createdAt": "2023-05-01T13:09:18.535Z",
+                  "updatedAt": "2023-05-01T13:09:18.535Z",
+                  "id": "881c6f6d-408f-462b-bcae-057694be73a8",
+                  "street": "rua b",
+                  "number": "33",
+                  "cep": "12343470",
+                  "city": "Belém",
+                  "state": "Pará",
+                  "complement": "Próximo ao Hospital Central"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string",
+            "description": "The name of the main street",
+            "example": "25th Avenue",
+            "nullable": true
+          },
+          "number": {
+            "type": "number",
+            "description": "The number of user's address",
+            "example": 32,
+            "nullable": true
+          },
+          "zip_code": {
+            "type": "string",
+            "description": "The zip code of user's address",
+            "example": "987654320",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "description": "The city of user's address",
+            "example": "São Paulo",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "description": "The state of user's address",
+            "example": "SP",
+            "nullable": true
+          },
+          "complement": {
+            "type": "string",
+            "description": "Any additional information of user's address",
+            "example": "Close to National Bank",
+            "nullable": true
+          }
+        }
+      },
+      "AddressResponse": {
+        "type": "array",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "number": {
+            "type": "number"
+          },
+          "zip_code": {
+            "type": "string",
+            "maxLength": 9
+          },
+          "city": {
+            "type": "string",
+            "maxLength": 25
+          },
+          "state": {
+            "type": "string",
+            "maxLength": 2
+          },
+          "complement": {
+            "type": "string",
+            "default": ""
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "example": {
+            "createdAt": "2023-04-24T13:35:40.013Z",
+            "updatedAt": "2023-04-27T14:59:49.464Z",
+            "id": "efb6092f-77ae-46f9-9931-6d1a7dfe8f3c",
+            "street": "Rua Tech",
+            "number": 125,
+            "cep": 55555888,
+            "city": "Belém",
+            "state": "Pará",
+            "complement": "Apartamento 209",
+            "user": {
+              "createdAt": "2023-04-24T13:35:39.803Z",
+              "updatedAt": "2023-04-24T13:35:39.803Z",
+              "id": "a80c02f5-db8c-42eb-9e89-c594deb5243b",
+              "firstname": "Antonio",
+              "lastname": "P. Neto",
+              "email": "apneto@mail.com",
+              "password": "$2a$10$kQJwcoGQssj3fzF648GVUO68V4dYY8/0cX0E1r6hDcbrtvp2Pspg.",
+              "cpf": "11122233300",
+              "contact": "91991911919",
+              "isWhatsapp": true,
+              "birthdate": "11/11/1988",
+              "description": ".",
+              "isSalesman": true,
+              "reset_token": null
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/sessions": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "description": "Authenticate a user with their email and password.",
+        "requestBody": {
+          "description": "User credentials",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginCredentials"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User authenticated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid email or password."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create user's account",
+        "description": "Update the necessary informations of user's address",
+        "requestBody": {
+          "description": "Register new user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "201": {
+          "description": "User created successfully.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "field is a field required"
+        },
+        "500": {
+          "description": "Internal server error."
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "Get an specific user",
+        "summary": "Get an specific user",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                   "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/cars": {},
+    "/comments": {},
+    "/address/{id}": {
+      "patch": {
+        "tags": ["Address"],
+        "summary": "Update user's address",
+        "description": "Update the necessary informations of user's address",
+        "requestBody": {
+          "description": "User credentials",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Address"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User authenticated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    }
+  }
+}

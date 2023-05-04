@@ -1,6 +1,4 @@
-# kenzie-cars-back
-
-<!-- <strong>Kenzie Cars</strong> is an API developed to save and provide all informations about car buying and selling. Among all the functionalities, it's possible to execute all CRUD operations (creation, read, update and delete). The API ensure to make CRUD of users, ads and comments. Also it is possible to choose user's type at the moment of the register (if user is a salesman or a common user). Some of the functionalities are available only for salesmen.
+# Kenzie Cars
 
 # Install
 To run the API. you have to install all required libraries listed at ``package.json``, it is necessary to execute the following command:
@@ -65,8 +63,7 @@ Clone the project on your machine and install the dependencies with the followin
 
 ### 2.2 Environment Variables
 
-Then, create an ``.env`` file, copying
-Em seguida, crie um arquivo .env, copiando o formato do arquivo .env.example:
+Then, create an ``.env`` file, copying ``.env.example`` file format:
 
 ```bash
   cp .env.example .env
@@ -74,25 +71,23 @@ Em seguida, crie um arquivo .env, copiando o formato do arquivo .env.example:
 
 ### 4.3 Migrations
 
-Execute as migrations com o comando:
+Execute the migrations with the command:
 
 ```bash
-  yarn typeorm migration:run -d src/data-source.ts
+  yarn typeorm migration:run
 ```
 
-## 2. Diagram ER
+## 3. Diagram ER
 
 [ Back to the top ](#table-of-contents)
 
 You can see the full diagram at the project's root. It shows the attributes of each table and shows the relationships between than on the database.
 
-## 3. Documentation
+## 4. Documentation
 
 [ Back to the top ](#table-of-contents)
 
 Link com a **[Documentação](http://localhost:3000/api-docs/#/)**
-
-
 
 # Contribution
 Team that developed the project

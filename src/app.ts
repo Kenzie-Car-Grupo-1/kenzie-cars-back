@@ -2,10 +2,9 @@ import "reflect-metadata";
 import "express-async-errors";
 import express from "express";
 import cors from "cors";
-// import "swagger-ui-express";
-// import "swagger.json";
-// const swaggerUi = require('swagger-ui-express');
-// const swaggerDocument = require('./swagger.json');
+import swaggerUI from "swagger-ui-express";
+import swaggerJsDoc from "swagger-jsdoc";
+import swaggerDocument from "../swagger.json"
 
 import { carRoutes } from "./routes/cars.routes";
 import { userRoutes } from "./routes/users.routes";
@@ -25,7 +24,6 @@ app.use("/address", addressRoutes);
 app.use("/comments", commentRoutes);
 
 app.use(handleError);
-// app.use("/api-docs", swagger);
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 export default app;
