@@ -11,6 +11,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
+    "outDir": "./dist",
     "resolveJsonModule": true
   },
   "include": ["src", "app.ts"],
