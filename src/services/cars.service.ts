@@ -62,7 +62,7 @@ export class CarsServices {
 
     const carsAd: any = await carsRepository.findOne({
       where: { id: carId },
-      relations: { images: true, user: true, comment: true },
+      relations: { images: true, user: true, comment: { user: true } },
     });
 
     delete carsAd.user.password;
