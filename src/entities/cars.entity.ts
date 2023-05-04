@@ -38,6 +38,9 @@ export class CarAd {
   @Column({ type: "varchar", length: 255, nullable: false })
   description: string;
 
+  @Column({ type: "boolean", default: true })
+  isPublished: boolean;
+
   @OneToMany(() => CarImage, (carImage) => carImage.car, {
     nullable: true,
   })
