@@ -1,4 +1,4 @@
-import { Request, Response, response } from "express";
+import { Request, Response } from "express";
 import { CommentsService } from "./../services/comments.service";
 import {
   ICommentCreate,
