@@ -54,7 +54,7 @@ class EmailService {
           button: {
             color: "#DC4D2F",
             text: "Reset your password",
-            link: `http://127.0.0.1:5173/login/reset/${resetToken}`, //FRONTEND
+            link: `http://kenzie-cars-front-naoeoneto.vercel.app/login/reset/${resetToken}`, //FRONTEND
           },
         },
         outro:
