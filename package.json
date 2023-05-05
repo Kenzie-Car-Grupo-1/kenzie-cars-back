@@ -48,7 +48,7 @@
     "typeorm:create": "typeorm-ts-node-commonjs migration:create src/migrations/createTable -d src/data-source.ts",
     "typeorm:generate": "typeorm-ts-node-commonjs migration:generate src/migrations/createTable -d src/data-source.ts",
     "typeorm:run": "typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "build": "tsc",
     "test": "clear && cross-env NODE_ENV=test SECRET_KEY=123 jest"
   }
