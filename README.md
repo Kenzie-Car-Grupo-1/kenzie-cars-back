@@ -79,19 +79,18 @@ Execute the migrations with the command:
 
 ## 3. Diagram ER
 
-[ Back to the top ](#table-of-contents)
+[ Back to the top ](#table-of-content)
 
 You can see the full diagram at the project's root. It shows the attributes of each table and shows the relationships between than on the database.
 
 ## 4. Documentation
 
-[ Back to the top ](#table-of-contents)
+[ Back to the top ](#table-of-content)
 
-Link com a **[Documentação](http://localhost:3000/api-docs/#/)**
+Link to the **[Documentation](http://localhost:3000/api-docs/#/)**
 
 # Contribution
 Team that developed the project
-
 
 <table>
   <tbody style="display: flex;">
@@ -108,7 +107,6 @@ Team that developed the project
       <tr/>
     <tbody/>
 <table/>
-      
       
  # License
 

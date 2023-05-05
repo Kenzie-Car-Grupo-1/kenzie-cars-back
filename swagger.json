@@ -335,6 +335,401 @@
           ]
         }
       },
+      "UserCarsResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "nextPage": {
+            "type": "string"
+          },
+          "currentPage": {
+            "type": "string"
+          },
+          "previousPage": {
+            "type": "string"
+          },
+          "amountPage": {
+            "type": "number"
+          },
+          "howManyFetched": {
+            "type": "number"
+          },
+          "result": {
+            "type": "array",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Id of the newly created car ad."
+              },
+              "brand": {
+                "type": "string",
+                "description": "The brand of the car"
+              },
+              "model": {
+                "type": "string",
+                "description": "The model of the car"
+              },
+              "year": {
+                "type": "string",
+                "description": "The year of car's fabrication"
+              },
+              "fuel_type": {
+                "type": "string",
+                "description": "The type of car's fuel"
+              },
+              "kms": {
+                "type": "number",
+                "description": "The amount of kilometers that car was used"
+              },
+              "color": {
+                "type": "string",
+                "description": "The color of the car"
+              },
+              "price": {
+                "type": "string",
+                "description": "The price of the car"
+              },
+              "description": {
+                "type": "string",
+                "description": "A brief description of the car"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp of when the contact was created."
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp of when the contact was last updated."
+              },
+              "isPublished": {
+                "type": "boolean",
+                "description": "To confirm if the ad was published"
+              },
+              "images": {
+                "type": "array",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Id of the image from the newly car ad"
+                  },
+                  "url": {
+                    "type": "string",
+                    "description": "A link provided with car's image"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "message": "Carros listados com sucesso",
+          "nextPage": null,
+          "currentPage": "page=1",
+          "previousPage": null,
+          "amountPage": 1,
+          "howManyFetched": 3,
+          "result": [
+            {
+              "id": "fda66560-a56f-4ca6-be45-a4b8248efb68",
+              "brand": "ford",
+              "model": "Fiesta",
+              "year": "2010",
+              "fuel_type": "gas",
+              "kms": 1000,
+              "color": "black",
+              "price": "15000",
+              "description": "asdhsaudhsuah asuhdu ausdhu uahsdu uahsdu aushduhasd",
+              "isPublished": true,
+              "images": [
+                {
+                  "id": "87d94360-138f-4f18-8a0a-1216d88bdf4b",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "0e1157f3-9674-46b5-b7b4-ff9487358b4b",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "5d659ddc-ad31-4eae-ab13-1bfe918ca26d",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "f5cd12fb-2c45-48eb-ae9e-d5832af9597b",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "f85c3e67-3446-4402-86d7-3ab4f5cd9848",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "8138bea8-82e2-49b4-b97f-c8ff525fbe79",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                }
+              ],
+              "user": {
+                "createdAt": "2023-05-01T13:09:18.418Z",
+                "updatedAt": "2023-05-01T13:09:18.418Z",
+                "id": "29e1eafc-9155-4bbb-a4bc-a03bafd1c60e",
+                "firstname": "Fulano",
+                "lastname": "Silva",
+                "email": "fulano@mail.com",
+                "password": "$2a$10$h26iI7bqREhC.MIP5IObouDYs.NwKSXJ7vY2oMS6S3l0VWbDb1uNW",
+                "cpf": "85742202278",
+                "contact": "92890298022",
+                "isWhatsapp": true,
+                "birthdate": "13/08/1978",
+                "description": "Vendedor de carros",
+                "isSalesman": true,
+                "reset_token": null
+              },
+              "comment": [
+                {
+                  "createdAt": "2023-05-01T15:50:24.277Z",
+                  "updatedAt": "2023-05-01T15:50:24.277Z",
+                  "id": "a5e49f97-d2a1-4a99-a603-fad0c7d089bf",
+                  "text": "Teste 1"
+                },
+                {
+                  "createdAt": "2023-05-01T15:51:32.042Z",
+                  "updatedAt": "2023-05-01T15:51:32.042Z",
+                  "id": "0faffbab-e7fd-4724-9194-3e657150df83",
+                  "text": "Teste 2"
+                },
+                {
+                  "createdAt": "2023-05-01T15:53:32.064Z",
+                  "updatedAt": "2023-05-01T15:53:32.064Z",
+                  "id": "840c68b1-c716-4fe8-9ec1-f9ef50f4570c",
+                  "text": "Teste 2"
+                },
+                {
+                  "createdAt": "2023-05-01T15:57:34.632Z",
+                  "updatedAt": "2023-05-01T15:57:34.632Z",
+                  "id": "17a8d2f9-5282-4cd0-905f-722d002fa689",
+                  "text": "Teste 3"
+                },
+                {
+                  "createdAt": "2023-05-01T15:57:57.522Z",
+                  "updatedAt": "2023-05-01T15:57:57.522Z",
+                  "id": "c0b27f6b-54c2-40c1-b903-1ab28986a5b3",
+                  "text": "Teste 3"
+                },
+                {
+                  "createdAt": "2023-05-02T19:04:01.095Z",
+                  "updatedAt": "2023-05-02T19:04:01.095Z",
+                  "id": "202afded-e206-4084-98fc-f5f4b9630fba",
+                  "text": "Teste 4"
+                },
+                {
+                  "createdAt": "2023-05-02T20:02:17.188Z",
+                  "updatedAt": "2023-05-02T20:02:17.188Z",
+                  "id": "8bb356ff-0605-489c-a98e-f70a2e679a28",
+                  "text": "Olá!"
+                }
+              ]
+            },
+            {
+              "id": "8e52fc64-e0d3-424c-978a-2586b737ff52",
+              "brand": "ford",
+              "model": "Ka",
+              "year": "2000",
+              "fuel_type": "gas",
+              "kms": 1000,
+              "color": "black",
+              "price": "1200",
+              "description": "asdhsaudhsuah asuhdu ausdhu uahsdu uahsdu aushduhasd",
+              "isPublished": true,
+              "images": [
+                {
+                  "id": "02057eb7-f245-4570-8337-2aa13e2ceaf5",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "440fbc77-626f-4b4c-a9ba-3893f03cf4ee",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "df26b3ee-66c6-4bb3-bcef-4e74b8d35131",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "ed22dc38-a6ec-4071-9f0c-c0815861a891",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "a55e3e87-0e22-4545-ac35-ded67b227e2c",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "ff1fe009-b4de-47ee-8880-bbea74b54986",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                }
+              ],
+              "user": {
+                "createdAt": "2023-05-01T13:09:18.418Z",
+                "updatedAt": "2023-05-01T13:09:18.418Z",
+                "id": "29e1eafc-9155-4bbb-a4bc-a03bafd1c60e",
+                "firstname": "Fulano",
+                "lastname": "Silva",
+                "email": "fulano@mail.com",
+                "password": "$2a$10$h26iI7bqREhC.MIP5IObouDYs.NwKSXJ7vY2oMS6S3l0VWbDb1uNW",
+                "cpf": "85742202278",
+                "contact": "92890298022",
+                "isWhatsapp": true,
+                "birthdate": "13/08/1978",
+                "description": "Vendedor de carros",
+                "isSalesman": true,
+                "reset_token": null
+              },
+              "comment": [
+                {
+                  "createdAt": "2023-05-01T14:28:55.103Z",
+                  "updatedAt": "2023-05-01T14:28:55.103Z",
+                  "id": "8d5268af-8fd8-4401-9ab9-9709a20f54b5",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:29:27.100Z",
+                  "updatedAt": "2023-05-01T14:29:27.100Z",
+                  "id": "d2507fe5-f4f1-415d-a4dc-02af504cddf4",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:30:04.132Z",
+                  "updatedAt": "2023-05-01T14:30:04.132Z",
+                  "id": "8839e04a-f6fa-4787-8fc4-a3f2a24d5cd5",
+                  "text": "Comentário do ciclano"
+                }
+              ]
+            },
+            {
+              "id": "5e85122d-22e5-4661-ad46-c514e1ab9739",
+              "brand": "ford",
+              "model": "New fiesta",
+              "year": "1900",
+              "fuel_type": "gas",
+              "kms": 109209,
+              "color": "red",
+              "price": "1.000",
+              "description": "asdhsaudhsuah asuhdu ausdhu uahsdu uahsdu aushduhasd",
+              "isPublished": true,
+              "images": [
+                {
+                  "id": "242d69c1-3af9-41f3-b5bf-1bafbb64f9dd",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "16f11c9a-cd97-4f59-a9df-c0bb8f5f1930",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "20dd5232-3295-45a3-a0b5-db77e5ea42bf",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "913bdd90-a8c1-4b18-a646-08d1a52a3d28",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "942473c3-aca0-4766-9493-6f683678b651",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                },
+                {
+                  "id": "24873442-1760-4eef-a9c8-ffa4c8f15e77",
+                  "url": "https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-mercedes-benz-model-blue-fashion-car-simulation-illustration-image_1191568.jpg"
+                }
+              ],
+              "user": {
+                "createdAt": "2023-05-01T13:09:18.418Z",
+                "updatedAt": "2023-05-01T13:09:18.418Z",
+                "id": "29e1eafc-9155-4bbb-a4bc-a03bafd1c60e",
+                "firstname": "Fulano",
+                "lastname": "Silva",
+                "email": "fulano@mail.com",
+                "password": "$2a$10$h26iI7bqREhC.MIP5IObouDYs.NwKSXJ7vY2oMS6S3l0VWbDb1uNW",
+                "cpf": "85742202278",
+                "contact": "92890298022",
+                "isWhatsapp": true,
+                "birthdate": "13/08/1978",
+                "description": "Vendedor de carros",
+                "isSalesman": true,
+                "reset_token": null
+              },
+              "comment": [
+                {
+                  "createdAt": "2023-05-01T14:01:47.976Z",
+                  "updatedAt": "2023-05-01T14:01:47.976Z",
+                  "id": "8b3bce43-4389-4d8d-b7aa-646e7fa4340f",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:15:21.411Z",
+                  "updatedAt": "2023-05-01T14:15:21.411Z",
+                  "id": "9f53c6b0-6c7d-4f2c-9c08-3c8422a6b44a",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:20:46.873Z",
+                  "updatedAt": "2023-05-01T14:20:46.873Z",
+                  "id": "a71f864a-d653-433c-afec-9291e62eca5a",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:21:32.620Z",
+                  "updatedAt": "2023-05-01T14:21:32.620Z",
+                  "id": "fdaf8837-e000-4da0-a6b6-3ac89912fa08",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:22:33.939Z",
+                  "updatedAt": "2023-05-01T14:22:33.939Z",
+                  "id": "df8c82a0-6015-4d76-9e14-2947674569a3",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:23:19.646Z",
+                  "updatedAt": "2023-05-01T14:23:19.646Z",
+                  "id": "5ed63191-b0e5-480a-ba10-0294ee2671de",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:28:13.550Z",
+                  "updatedAt": "2023-05-01T14:28:13.550Z",
+                  "id": "1943dc72-b62c-497c-a1ac-3e54e1df50af",
+                  "text": "Comentário do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:31:33.512Z",
+                  "updatedAt": "2023-05-01T14:31:33.512Z",
+                  "id": "41adb124-450c-4096-bce1-652844f05254",
+                  "text": "Teste do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T14:45:46.426Z",
+                  "updatedAt": "2023-05-01T14:45:46.426Z",
+                  "id": "1fa72f3f-ecb0-4b0d-ac4f-79333151356d",
+                  "text": "Teste do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T15:41:59.001Z",
+                  "updatedAt": "2023-05-01T15:41:59.001Z",
+                  "id": "c6d001a5-36fe-4fb4-a21a-7826109ffc86",
+                  "text": "Teste do ciclano"
+                },
+                {
+                  "createdAt": "2023-05-01T15:47:14.989Z",
+                  "updatedAt": "2023-05-01T15:47:14.989Z",
+                  "id": "2953ba63-c2ec-45e7-882c-6b32aa181b29",
+                  "text": "Teste"
+                }
+              ]
+            }
+          ]
+        }
+      },
       "Car": {
         "type": "object",
         "properties": {
@@ -451,6 +846,10 @@
             "type": "string",
             "format": "date-time",
             "description": "Timestamp of when the contact was last updated."
+          },
+          "isPublished": {
+            "type": "boolean",
+            "description": "To confirm if the ad was published"
           },
           "images": {
             "type": "array",
@@ -725,6 +1124,48 @@
             }
           }
         }
+      },
+      "SendResetEmailPassword":{
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email address of the user",
+            "example": "johndoe@example.com"
+          }
+        },
+        "required": ["email"]
+      },
+      "SendResetEmailPasswordResponse":{
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A message sent to users about their request",
+            "example": "token send"
+          }
+        }
+      },
+      "ResetPassword":{
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": "The new password of an user",
+            "example": "654321"
+          }
+        },
+        "required": ["password"]
+      },
+      "ResetPasswordResponse":{
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "A message sent to users about their request",
+            "example": "password change with sucess"
+          }
+        }
       }
     },
     "securitySchemes": {
@@ -776,7 +1217,7 @@
       "post": {
         "tags": ["Users"],
         "summary": "Create user's account",
-        "description": "Update the necessary informations of user's address",
+        "description": "Register a new user at the database",
         "requestBody": {
           "description": "Register new user",
           "required": true,
@@ -787,25 +1228,85 @@
               }
             }
           }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "field is a field required"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
         }
       },
-      "responses": {
-        "201": {
-          "description": "User created successfully.",
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Update user's account",
+        "description": "Update the necessary informations of user's account",
+        "requestBody": {
+          "description": "Update user's account",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserResponse"
+                "$ref": "#/components/schemas/UserRequest"
               }
             }
           }
         },
-        "400": {
-          "description": "field is a field required"
+        "responses": {
+          "200": {
+            "description": "User updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
         },
-        "500": {
-          "description": "Internal server error."
-        }
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete user's account",
+        "description": "Delete user's account of the database",
+        "responses": {
+          "204": {
+            "description": "No body for response"
+          },
+          "401": {
+            "description": "Invalid token"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/users/{id}": {
@@ -832,7 +1333,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                   "$ref": "#/components/schemas/UserResponse"
+                  "$ref": "#/components/schemas/UserResponse"
                 }
               }
             }
@@ -843,8 +1344,427 @@
         }
       }
     },
-    "/cars": {},
-    "/comments": {},
+    "/users/{id}/cars": {
+      "get": {
+        "description": "Get a list of car ads from an specific user",
+        "summary": "Get a list of car ads from an specific user",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCarsResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/cars": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Create a car's ad",
+        "description": "Register a new car at the database",
+        "requestBody": {
+          "description": "Register new car",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Car created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "field is a field required"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": ["Cars"],
+        "summary": "Get a list of cars",
+        "description": "Get a list of cars from the database",
+        "responses": {
+          "201": {
+            "description": "Cars listed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCarResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/cars/{id}": {
+      "get": {
+        "tags": ["Cars"],
+        "summary": "Get car info",
+        "description": "Get all the informations of a specific car",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the car",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cars listed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Cars"],
+        "summary": "Update car info",
+        "description": "Update the necessary informations of a specific car",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the car",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cars updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CarResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You can not do that because you not a owner of this car."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["Cars"],
+        "summary": "Get car info",
+        "description": "Get all the informations from a specific car",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the car",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No body for response"
+          },
+          "401": {
+            "description": "You can not do that because you not a owner of this car"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/comments/{carId}": {
+      "post": {
+        "tags": ["Comments"],
+        "summary": "Create a comment on a car's ad",
+        "description": "Register a new comment at the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the car",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Register new comment",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Comment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Car created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "text is a field required"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": ["Comments"],
+        "summary": "Get comments by car",
+        "description": "Get all the comments of a specific car",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the car",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comments listed successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/comments/{commentId}": {
+      "patch": {
+        "tags": ["Comments"],
+        "summary": "Update comment",
+        "description": "Update necessary comments' information",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Comment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Comments updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You cannot do this operation because you are not the owner of the comment"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["Comments"],
+        "summary": "Delete comment",
+        "description": "Delete a specific comment on the database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No body for response"
+          },
+          "401": {
+            "description": "You cannot do this operation because you are not the owner of the comment"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "comments/date/{id}": {
+      "get": {
+        "tags": ["Comments"],
+        "summary": "Get date of a comment",
+        "description": "Get when the comments was made",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the comment",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "d5502e54-98fb-4a4a-84e4-fb7170b52407"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comments listed successfully.",
+            "content": {
+              "application/json": {
+                "message": "hoje"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
     "/address/{id}": {
       "patch": {
         "tags": ["Address"],
@@ -871,6 +1791,95 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/resetPassword": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Require user's password",
+        "description": "User can make a request to remember account's password",
+        "requestBody": {
+          "description": "Rescue account's password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendResetEmailPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Car created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendResetEmailPasswordResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "user not found"
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/resetPassword/{token}": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Require user's password",
+        "description": "User can make a request to remember account's password",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "description": "The user's token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODMyODk3NzYsImV4cCI6MTY4MzM3NjE3Niwic3ViIjoiMjllMWVhZmMtOTE1NS00YmJiLWE0YmMtYTAzYmFmZDFjNjBlIn0.tr-p8_0kt7AkDKRPxX4ghgd3BWk9kHhs1lTZUD7Ecdc"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Change account's password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Password updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "user not found"
           },
           "500": {
             "description": "Internal server error."
