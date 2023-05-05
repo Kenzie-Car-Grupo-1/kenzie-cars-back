@@ -6,7 +6,7 @@ import { CarAd } from "../entities/cars.entity";
 import { paginate } from "../utils/pagination.util";
 import { hash, hashSync } from "bcryptjs";
 import AppError from "../errors/appError";
-import { randomUUID } from "node:crypto";
+import { randomUUID } from "crypto";
 import { emailService } from "../utils/sendEmail.util";
 
 class UsersService {
